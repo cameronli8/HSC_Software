@@ -1,0 +1,123 @@
+/* ========== LIGHT MODE ========== */
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand,
+.form-check-label,
+h3,
+p,
+label {
+  color: #212529;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.form-control {
+  background-color: #ffffff;
+  color: #212529;
+  border: 1px solid #ced4da;
+  box-shadow: none;
+  transition: border 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(26, 115, 232, 0.15);
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+}
+
+.btn-primary,
+.btn-secondary {
+  background-color: #1a73e8;
+  border-color: #1a73e8;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #1669c1;
+  border-color: #1669c1;
+}
+
+canvas {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+
+/* ========== DARK MODE ========== */
+body.dark-theme {
+  background-color: #2c2f33;
+  color: #ffffff;
+}
+
+.dark-theme .navbar {
+  background-color: #2d3238 !important;
+}
+
+.dark-theme .navbar-brand,
+.dark-theme .form-check-label,
+.dark-theme h3,
+.dark-theme p,
+.dark-theme label {
+  color: #ffffff !important;
+}
+
+.dark-theme .form-control {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-theme .form-control::placeholder {
+  color: #ccc;
+}
+
+.dark-theme .btn-primary,
+.dark-theme .btn-secondary {
+  background-color: #444;
+  border-color: #666;
+  color: #fff;
+}
+
+.dark-theme .btn-primary:hover,
+.dark-theme .btn-secondary:hover {
+  background-color: #555;
+  border-color: #777;
+}
+
+.dark-theme canvas {
+  background-color: #1a1a1a;
+}
+
+/* Light Mode Tabs */
+.nav-link {
+  color: #212529;
+}
+.nav-link:hover {
+  color: #0d6efd;
+}
+
+/* Dark Mode Tabs */
+body.dark-theme .nav-link {
+  color: #ffffff;
+}
+body.dark-theme .nav-link:hover {
+  color: #66b2ff;
+}
