@@ -1,3 +1,10 @@
+/* Prevent horizontal scrolling and ensure full-width layout */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 /* ========== LIGHT MODE ========== */
 body {
   background-color: #f8f9fa;
@@ -8,6 +15,7 @@ body {
 .navbar {
   background-color: #ffffff !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 80px; /* push content below navbar */
 }
 
 .navbar-brand,
@@ -59,7 +67,6 @@ canvas {
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0,0,0,0.05);
 }
-
 
 /* ========== DARK MODE ========== */
 body.dark-theme {
@@ -120,4 +127,87 @@ body.dark-theme .nav-link {
 }
 body.dark-theme .nav-link:hover {
   color: #66b2ff;
+}
+
+#chartSummaryWrapper {
+  display: none !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  width: calc(100vw - 40px) !important;  /* viewport minus margins */
+  box-sizing: border-box;
+  gap: 20px;                             /* reduce gap to fit better */
+  margin: 20px auto 0 auto;           /* 20px margin all around horizontal */
+  overflow-x: hidden;                   /* hide any tiny overflow */
+}
+
+#chartMetricsWrapper {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#aiSummaryBox {
+  flex: 1;
+}
+
+#chartContainer {
+  display: none;
+  width: 100% !important;
+  height: 500px !important;
+}
+
+#stockChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Light mode financial metrics */
+body:not(.dark-theme) #metricsBox {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Dark mode financial metrics */
+body.dark-theme #metricsBox {
+  background-color: #1a1a1a !important;
+  color: #f0f0f0 !important;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme #metricsBox h3,
+body.dark-theme #metricsBox p,
+body.dark-theme #metricsBox pre,
+body.dark-theme #metricsBox code,
+body.dark-theme #metricsBox span {
+  color: #f0f0f0 !important;
+}
+
+/* ——— Catch both html and body dark-theme for Financial Metrics ——— */
+.dark-theme #metricsBox,
+html.dark-theme #metricsBox {
+  background-color: #1a1a1a !important;
+  border: 1px solid #555   !important;
+  box-shadow: 0 0 5px rgba(255,255,255,0.05) !important;
+  color: #f0f0f0           !important;
+}
+
+/* Force all child text (pre, code, spans, headings, etc.) to be light */
+.dark-theme #metricsBox *,
+html.dark-theme #metricsBox * {
+  color: #f0f0f0 !important;
+}
+
+/* Override Bootstrap classes on metrics box in dark mode */
+body.dark-theme #metricsBox.bg-white,
+html.dark-theme #metricsBox.bg-white {
+  background-color: #1a1a1a !important;
+}
+body.dark-theme #metricsBox.border,
+html.dark-theme #metricsBox.border {
+  border-color: #555 !important;
 }

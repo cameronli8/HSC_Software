@@ -2,6 +2,10 @@ import sqlite3
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import yfinance as yf
+from openai import OpenAI
+import os
+
+client = OpenAI(api_key="")  # Replace with your actual key
 
 
 app = Flask(__name__)
@@ -13,6 +17,26 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+@app.route('/stock_summary', methods=['POST'])
+def get_stock_summary():
+    ticker = request.json.get('ticker')
+
+    prompt = f"Give a short and professional overview of what the company {ticker} does. Include what sector it is in and any relevant business details that an investor should know."
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are a financial assistant that summarizes businesses."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=250
+        )
+        summary = response.choices[0].message.content
+        return jsonify({'summary': summary})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/')
 def home():
@@ -30,11 +54,29 @@ def get_stock():
     prev_price = hist['Close'].iloc[-2]
     change_percent = ((latest_price - prev_price) / prev_price) * 100
 
+    info = stock.info
+    company_name = info.get('longName', 'N/A')
+    sector = info.get('sector', 'N/A')
+    metrics = {
+        'Market Cap': info.get('marketCap'),
+        'P/E Ratio': info.get('trailingPE'),
+        'Forward P/E': info.get('forwardPE'),
+        'PEG Ratio': info.get('pegRatio'),
+        'EPS': info.get('trailingEps'),
+        'Revenue': info.get('totalRevenue'),
+        'Gross Profit': info.get('grossProfits'),
+        'ROE': info.get('returnOnEquity'),
+        'Debt/Equity': info.get('debtToEquity'),
+    }
+
     return jsonify({
         'ticker': ticker.upper(),
+        'company_name': company_name,
+        'sector': sector,
         'price': round(latest_price, 2),
         'change_percent': round(change_percent, 2),
-        'history': hist['Close'].tolist()
+        'history': hist['Close'].tolist(),
+        'metrics': metrics
     })
 
 
