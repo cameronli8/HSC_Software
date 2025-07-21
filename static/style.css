@@ -1,0 +1,213 @@
+/* Prevent horizontal scrolling and ensure full-width layout */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== LIGHT MODE ========== */
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 80px; /* push content below navbar */
+}
+
+.navbar-brand,
+.form-check-label,
+h3,
+p,
+label {
+  color: #212529;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.form-control {
+  background-color: #ffffff;
+  color: #212529;
+  border: 1px solid #ced4da;
+  box-shadow: none;
+  transition: border 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(26, 115, 232, 0.15);
+}
+
+.form-control::placeholder {
+  color: #6c757d;
+}
+
+.btn-primary,
+.btn-secondary {
+  background-color: #1a73e8;
+  border-color: #1a73e8;
+  color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #1669c1;
+  border-color: #1669c1;
+}
+
+canvas {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+/* ========== DARK MODE ========== */
+body.dark-theme {
+  background-color: #2c2f33;
+  color: #ffffff;
+}
+
+.dark-theme .navbar {
+  background-color: #2d3238 !important;
+}
+
+.dark-theme .navbar-brand,
+.dark-theme .form-check-label,
+.dark-theme h3,
+.dark-theme p,
+.dark-theme label {
+  color: #ffffff !important;
+}
+
+.dark-theme .form-control {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-theme .form-control::placeholder {
+  color: #ccc;
+}
+
+.dark-theme .btn-primary,
+.dark-theme .btn-secondary {
+  background-color: #444;
+  border-color: #666;
+  color: #fff;
+}
+
+.dark-theme .btn-primary:hover,
+.dark-theme .btn-secondary:hover {
+  background-color: #555;
+  border-color: #777;
+}
+
+.dark-theme canvas {
+  background-color: #1a1a1a;
+}
+
+/* Light Mode Tabs */
+.nav-link {
+  color: #212529;
+}
+.nav-link:hover {
+  color: #0d6efd;
+}
+
+/* Dark Mode Tabs */
+body.dark-theme .nav-link {
+  color: #ffffff;
+}
+body.dark-theme .nav-link:hover {
+  color: #66b2ff;
+}
+
+#chartSummaryWrapper {
+  display: none !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  width: calc(100vw - 40px) !important;  /* viewport minus margins */
+  box-sizing: border-box;
+  gap: 20px;                             /* reduce gap to fit better */
+  margin: 20px auto 0 auto;           /* 20px margin all around horizontal */
+  overflow-x: hidden;                   /* hide any tiny overflow */
+}
+
+#chartMetricsWrapper {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#aiSummaryBox {
+  flex: 1;
+}
+
+#chartContainer {
+  display: none;
+  width: 100% !important;
+  height: 500px !important;
+}
+
+#stockChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Light mode financial metrics */
+body:not(.dark-theme) #metricsBox {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Dark mode financial metrics */
+body.dark-theme #metricsBox {
+  background-color: #1a1a1a !important;
+  color: #f0f0f0 !important;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme #metricsBox h3,
+body.dark-theme #metricsBox p,
+body.dark-theme #metricsBox pre,
+body.dark-theme #metricsBox code,
+body.dark-theme #metricsBox span {
+  color: #f0f0f0 !important;
+}
+
+/* ——— Catch both html and body dark-theme for Financial Metrics ——— */
+.dark-theme #metricsBox,
+html.dark-theme #metricsBox {
+  background-color: #1a1a1a !important;
+  border: 1px solid #555   !important;
+  box-shadow: 0 0 5px rgba(255,255,255,0.05) !important;
+  color: #f0f0f0           !important;
+}
+
+/* Force all child text (pre, code, spans, headings, etc.) to be light */
+.dark-theme #metricsBox *,
+html.dark-theme #metricsBox * {
+  color: #f0f0f0 !important;
+}
+
+/* Override Bootstrap classes on metrics box in dark mode */
+body.dark-theme #metricsBox.bg-white,
+html.dark-theme #metricsBox.bg-white {
+  background-color: #1a1a1a !important;
+}
+body.dark-theme #metricsBox.border,
+html.dark-theme #metricsBox.border {
+  border-color: #555 !important;
+}
